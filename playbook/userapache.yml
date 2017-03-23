@@ -1,0 +1,22 @@
+---
+- name: Installing the packages automatically
+  hosts: webabhi
+  sudo: yes
+ # tasks:
+   #- name: Creating Admin User
+     # user: name=Admin password="samsung"
+  tasks:
+    - name: Creating user
+      user: name=Admin password="samsung"
+
+    - name: install apache2
+      apt: name=apache2 update_cache=yes state=latest
+      #command: apt-get install -y apache2 libapache2-mod-xsendfile apache2-mpm-itk 
+    - name: enabled mod_rewrite
+      apache2_module: name=rewrite state=present
+      notify:
+        - restart apache2
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted

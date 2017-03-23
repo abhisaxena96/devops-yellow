@@ -1,0 +1,9 @@
+---
+- hosts: webabhi
+  become_user: root
+  tasks:
+  - name: Updating Ubuntu Be careful
+    apt:
+     name: upgrade
+     update_cache: yes
+

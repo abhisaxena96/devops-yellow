@@ -1,0 +1,15 @@
+---
+- hosts: webabhi
+  become_user: sudo
+  tasks:
+  - name: Executable Permission
+    shell: name={{ item }}
+    with_items:
+     - sudo sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" >> /etc/apt/sources.list.d/opera.list'
+     - sudo sh -c 'wget -O - http://deb.opera.com/archive.key | apt-key add -'
+
+  - name: installing Miscellaneous Packages
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+     - opera
+

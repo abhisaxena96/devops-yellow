@@ -1,0 +1,23 @@
+---
+- hosts: webabhi
+  become_user: root
+  tasks:
+  - name: installing Miscellaneous Packages
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+       - dconf-tools 
+       - ssh
+       - filezilla #ftp client
+       - htop  # network tool
+       - vim  # editor
+       - diffuse  # compare file
+       - bmon 
+       - meld  # compare tool
+       - wine #Wine
+       - slack  # slack 
+       - xpad  # Xpad
+       - shutter # Screen Shot Tool
+       - vim  # Editor
+       - geany  #Editor
+
+
